@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # source config
-
 source $HOME/.config/golazo/golazo.conf
 
 # get random code and apply it to pre
@@ -11,8 +10,7 @@ random_color () {
     echo "${colors[$index]}${pre}\e[0m"
 }
 
-# THINGS TO BE FETCHED
-
+# things to be fetched
 declare -A fetch=(
     [user]="$USER"
     [host]="$(cat /etc/hostname)"
@@ -32,10 +30,9 @@ declare -A fetch=(
     [display]="$(xrandr | grep '*' | awk '{print $1}'), $(xrandr | grep '*' | awk '{print $2}' | sed 's/*/Hz/ ; s/+//')"
 )
 
-# MAIN
 main () {
     for info in "${order[@]}"; do
-        echo -e "$(random_color) $info${sep}${fetch[$info]}"
+        echo -e "$(random_color) \e[0;1;3m$info\e[0m${sep}${fetch[$info]}"
     done
 }
 
